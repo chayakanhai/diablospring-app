@@ -5,7 +5,7 @@ const DemoDetails = props => {
   return (
     <div className="container section demo-details">
       <div className="card z-depth-0">
-        <div className="card-content light-blue">
+        <div className="card-content red lighthen">
           <span className="card-title">Demo Title - {id}</span>
           <p>
             Ut dolore amet minim nostrud pariatur ad enim exercitation sit non.
