@@ -5,7 +5,7 @@ const DemoDetails = props => {
   return (
     <div className="container section demo-details">
       <div className="card z-depth-0">
-        <div className="card-content red lighthen">
+        <div className="card-content red lighten-1">
           <span className="card-title">Demo Title - {id}</span>
           <p>
             Ut dolore amet minim nostrud pariatur ad enim exercitation sit non.
@@ -17,6 +17,7 @@ const DemoDetails = props => {
         <div className="card-action grey lighten-4 grey-text">
           <div>Posted by Jane Doe Producer</div>
           <div>22th August, 8am</div>
+          <i className="material-icons">cloud_download</i>
         </div>
       </div>
     </div>

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Notifications from "./notifications";
 import DemoList from "../demos/demoList";
+import { connect } from "react-redux";
 
 class Dashboard extends Component {
   render() {
+    //console.log(this.props);
     return (
       <div className="dashboard container">
         <div className="row">
@@ -17,5 +19,10 @@ class Dashboard extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    demos: state.demo.demos // (props) property: state in rootReducer.property in projectReducer
+  };
+};
 
-export default Dashboard;
+export default connect(mapStateToProps)(Dashboard);

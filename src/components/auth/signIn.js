@@ -23,21 +23,11 @@ class SignIn extends Component {
         <form onSubmit={this.handleSubmit} className="none">
           <h1 className="white-text text-white">Sign In</h1>
           <div className="input-field">
-            <input
-              type="email"
-              autoComplete="user email"
-              id="email"
-              onChange={this.handleChange}
-            />
+            <input type="text" id="email" onChange={this.handleChange} />
             <label htmlFor="email">Email</label>
           </div>
           <div className="input-field">
-            <input
-              type="password"
-              autoComplete="current-password"
-              id="password"
-              onChange={this.handleChange}
-            />
+            <input type="text" id="password" onChange={this.handleChange} />
             <label htmlFor="password">Password</label>
           </div>
           <div className="input-field">

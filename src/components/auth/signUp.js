@@ -2,10 +2,11 @@ import React, { Component } from "react";
 
 class SignUp extends Component {
   state = {
+    emailAdress: "",
+    Password: "",
     firstName: "",
     lastName: "",
     dateOfBirth: "",
-    emailAdress: "",
     phoneNumber: "",
     country: "",
     companyName: ""
@@ -22,6 +23,14 @@ class SignUp extends Component {
         <form onSubmit={this.handleSubmit} className="none">
           <h1 className="white-text text-white">Sign Up</h1>
           <div className="input-field">
+            <label htmlFor="emailAdress">Email Adress</label>
+            <input type="text" id="emailAdress" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
+            <label htmlFor="Password">Password</label>
+            <input type="text" id="Password" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
             <label htmlFor="firsName">First Name</label>
             <input type="text" id="firstName" onChange={this.handleChange} />
           </div>
@@ -34,10 +43,7 @@ class SignUp extends Component {
             <label htmlFor="dateOfBirth">Date of birth</label>
             <input type="text" id="dateOfBirth" onChange={this.handleChange} />
           </div>
-          <div className="input-field">
-            <label htmlFor="emailAdress">Email Adress</label>
-            <input type="email" id="emailAdress" onChange={this.handleChange} />
-          </div>
+
           <div className="input-field">
             <label htmlFor="phone number">Phone number</label>
             <input type="text" id="phone number" onChange={this.handleChange} />
