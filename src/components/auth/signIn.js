@@ -7,8 +7,9 @@ class SignIn extends Component {
   };
 
   handleChange = e => {
+    const { id, value } = e.target;
     this.setState({
-      [e.target.id]: e.target.id.value
+      [id]: value
     });
   };
 

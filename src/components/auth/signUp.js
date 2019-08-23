@@ -12,7 +12,10 @@ class SignUp extends Component {
     companyName: ""
   };
   handleChange = e => {
-    console.log(e);
+    const { id, value } = e.target;
+    this.setState({
+      [id]: value
+    });
   };
   handleSubmit = e => {
     console.log(e);
