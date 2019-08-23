@@ -7,7 +7,16 @@ const initState = {
 };
 
 const demoReducer = (state = initState, action) => {
-  return state;
+  switch (action.type) {
+    case "CREATE_DEMO":
+      console.log("created demo", action.demo);
+      return state;
+    case "CREATE_DEMO_ERROR":
+      console.log("create demo error", action.err);
+      return state;
+    default:
+      return state;
+  }
 };
 
 export default demoReducer;

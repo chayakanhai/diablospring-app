@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
+import { connect } from "react-redux";
+import { createDemo } from "../../store/actions/demoActions";
 
 // heet Drop demo in navbar
 class CreateDemo extends Component {
   state = {
     artistName: "",
-    songName: "",
-    musicUrlBrowser: "",
-    personalMessage: ""
+    demoTitle: ""
   };
 
   handleChange = e => {
+    const { id, value } = e.target;
     this.setState({
-      [e.target.id]: e.target.id.value
+      [id]: value
     });
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    //console.log(this.state);
+    this.props.createDemo(this.state);
   };
 
   render() {
@@ -26,37 +28,34 @@ class CreateDemo extends Component {
         <form onSubmit={this.handleSubmit} className="none">
           <h1 className="white-text text-white"> DROP YOUR DEMO HERE! </h1>
           <div className="input-field">
-            <label htmlFor="artistName"> Artist name </label>
-            <input
-              type="artistName"
-              id="artistName"
-              onChange={this.handleChange}
-            />
+            <label htmlFor="artistName"> Artist Name </label>
+            <input type="text" id="artistName" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <label htmlFor="songName"> Song name </label>
-            <input type="songName" id="songName" onChange={this.handleChange} />
+            <label htmlFor="demoTitle"> Demo Title </label>
+            <input type="text" id="demoTitle" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="musicUrlBrowser"> Music URL / Browser </label>
             <input
-              type="musicUrlBrowser"
+              type="text"
               id="musicUrlBrowser"
               onChange={this.handleChange}
             />
           </div>
+
           <div className="input-field">
             <label htmlFor="personalMessage"> Personal Message </label>
             <input
-              type="personalMessage"
+              type="text"
               id="personalMessage"
               onChange={this.handleChange}
             />
           </div>
-          <div class="row">
-            <div class="col s6 offset-s3">
-              <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
+          <div className="row">
+            <div className="col s6 offset-s3">
+              <div className="card blue-grey darken-1">
+                <div className="card-content white-text">
                   <Dropzone
                     onDrop={acceptedFiles => console.log(acceptedFiles)}
                   >
@@ -86,4 +85,13 @@ class CreateDemo extends Component {
   }
 }
 
-export default CreateDemo;
+const mapDispatchToProps = dispatch => {
+  return {
+    createDemo: demo => dispatch(createDemo(demo))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CreateDemo);
