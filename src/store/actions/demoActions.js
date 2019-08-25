@@ -3,13 +3,16 @@ export const createDemo = demo => {
     //async call to database
 
     const firestore = getFirestore();
+    const profile = getState().firebase.profile;
+    const producerId = getState().firebase.auth.uid;
+
     firestore
       .collection("demos")
       .add({
         ...demo,
-        producerFirstName: "Jane",
-        producerLastName: "Doe",
-        producerId: 12345,
+        producerFirstName: profile.firstName,
+        producerLastName: profile.lastName,
+        producerId: producerId,
         createdAt: new Date()
       })
       .then(() => {

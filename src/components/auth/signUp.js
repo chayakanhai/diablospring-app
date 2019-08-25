@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { signUp } from "../../store/actions/authActions";
 
 class SignUp extends Component {
   state = {
@@ -12,26 +15,31 @@ class SignUp extends Component {
     companyName: ""
   };
   handleChange = e => {
-    const { id, value } = e.target;
+    //const { id, value } = e.target;
     this.setState({
-      [id]: value
+      //[id]: value
+      [e.target.id]: e.target.value
     });
   };
   handleSubmit = e => {
-    console.log(e);
+    //console.log(e);
+    e.preventDefault();
+    this.props.signUp(this.state);
   };
   render() {
+    const { auth, authError } = this.props;
+    if (auth.uid) return <Redirect to="signin" />;
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="none">
           <h1 className="white-text text-white">Sign Up</h1>
           <div className="input-field">
             <label htmlFor="emailAdress">Email Adress</label>
-            <input type="text" id="emailAdress" onChange={this.handleChange} />
+            <input type="text" id="email" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="Password">Password</label>
-            <input type="text" id="Password" onChange={this.handleChange} />
+            <input type="text" id="password" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="firsName">First Name</label>
@@ -62,10 +70,29 @@ class SignUp extends Component {
           <div className="input-field">
             <button className="btn red lighten-1 z-depth-0">Submit</button>
           </div>
+          <div className="red-text center">
+            {authError ? <p>{authError}</p> : null}
+          </div>
         </form>
       </div>
     );
   }
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth,
+    authError: state.auth.authError
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signUp: newUser => dispatch(signUp(newUser))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);

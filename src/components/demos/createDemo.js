@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import { connect } from "react-redux";
 import { createDemo } from "../../store/actions/demoActions";
+import { Redirect } from "react-router-dom";
 
 // heet Drop demo in navbar
 class CreateDemo extends Component {
@@ -23,6 +24,9 @@ class CreateDemo extends Component {
   };
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to="signin" />;
+    //const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="none">
@@ -85,6 +89,12 @@ class CreateDemo extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     createDemo: demo => dispatch(createDemo(demo))
@@ -92,6 +102,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CreateDemo);

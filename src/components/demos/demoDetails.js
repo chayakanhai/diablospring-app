@@ -1,27 +1,54 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
+import { firestoreConnect } from "react-redux-firebase";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 const DemoDetails = props => {
-  const id = props.match.params.id;
-  return (
-    <div className="container section demo-details">
-      <div className="card z-depth-0">
-        <div className="card-content red lighten-1">
-          <span className="card-title">Demo Title - {id}</span>
-          <p>
-            Ut dolore amet minim nostrud pariatur ad enim exercitation sit non.
-            Aute esse dolor duis reprehenderit laboris officia aliquip veniam et
-            aliquip est. Fugiat amet minim ut exercitation commodo ipsum
-            laboris.
-          </p>
-        </div>
-        <div className="card-action grey lighten-4 grey-text">
-          <div>Posted by Jane Doe Producer</div>
-          <div>22th August, 8am</div>
-          <i className="material-icons">cloud_download</i>
+  const { demo, auth } = props;
+
+  if (!auth.uid) return <Redirect to="signin" />;
+  if (demo) {
+    return (
+      <div className="container section demo-details">
+        <div className="card z-depth-0">
+          <div className="card-content red lighten-1">
+            <span className="card-title">Demo Title - {demo.demoTitle}</span>
+            <p>
+              Ut dolore amet minim nostrud pariatur ad enim exercitation sit
+              non. Aute esse dolor duis reprehenderit laboris officia aliquip
+              veniam et aliquip est. Fugiat amet minim ut exercitation commodo
+              ipsum laboris.
+            </p>
+          </div>
+          <div className="card-action grey lighten-4 grey-text">
+            <div>Posted by Jane Doe Producer</div>
+            <div>22th August, 8am</div>
+            <i className="material-icons">cloud_download</i>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="container center">
+        <p>Loading demo...</p>
+      </div>
+    );
+  }
 };
 
-export default DemoDetails;
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const demos = state.firestore.data.demos;
+  const demo = demos ? demos[id] : null;
+  return {
+    demo: demo,
+    auth: state.firebase.auth
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "demos" }])
+)(DemoDetails);
