@@ -9,6 +9,9 @@ const DemoSummary = ({ demo }) => {
         <p>
           Posted by {demo.producerFirstName} {demo.producerLastName}
         </p>
+        <p className="grey-text">
+          {moment(demo.createdAt.toDate()).calendar()}
+        </p>
       </div>
     </div>
   );

@@ -8,7 +8,9 @@ import { Redirect } from "react-router-dom";
 class CreateDemo extends Component {
   state = {
     artistName: "",
-    demoTitle: ""
+    demoTitle: "",
+    musicUrlBrowser: "",
+    personalMessage: ""
   };
 
   handleChange = e => {
@@ -21,6 +23,7 @@ class CreateDemo extends Component {
     e.preventDefault();
     //console.log(this.state);
     this.props.createDemo(this.state);
+    this.props.history.push("/");
   };
 
   render() {

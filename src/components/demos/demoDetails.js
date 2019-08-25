@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import moment from "moment";
 
 const DemoDetails = props => {
   const { demo, auth } = props;
@@ -23,7 +24,7 @@ const DemoDetails = props => {
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted by Jane Doe Producer</div>
-            <div>22th August, 8am</div>
+            <div>{moment(demo.createdAt.toDate()).calendar()}</div>
             <i className="material-icons">cloud_download</i>
           </div>
         </div>

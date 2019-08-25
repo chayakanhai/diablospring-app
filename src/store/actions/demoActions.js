@@ -10,10 +10,10 @@ export const createDemo = demo => {
       .collection("demos")
       .add({
         ...demo,
-        producerFirstName: profile.firstName,
-        producerLastName: profile.lastName,
-        producerId: producerId,
-        createdAt: new Date()
+        createdAt: new Date(),
+        producerId: producerId
+        //producerFirstName: profile.firstName,
+        //producerLastName: profile.lastName
       })
       .then(() => {
         dispatch({ type: "CREATE_DEMO", demo });

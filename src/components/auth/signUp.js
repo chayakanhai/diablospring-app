@@ -6,9 +6,9 @@ import { signUp } from "../../store/actions/authActions";
 class SignUp extends Component {
   state = {
     emailAdress: "",
-    Password: "",
-    firstName: "",
-    lastName: "",
+    password: "",
+    producerFirstName: "",
+    producerLastName: "",
     dateOfBirth: "",
     phoneNumber: "",
     country: "",
@@ -43,11 +43,19 @@ class SignUp extends Component {
           </div>
           <div className="input-field">
             <label htmlFor="firsName">First Name</label>
-            <input type="text" id="firstName" onChange={this.handleChange} />
+            <input
+              type="text"
+              id="producerFirstName"
+              onChange={this.handleChange}
+            />
           </div>
           <div className="input-field">
             <label htmlFor="lastName">Last Name</label>
-            <input type="text" id="lastName" onChange={this.handleChange} />
+            <input
+              type="text"
+              id="producerLastName"
+              onChange={this.handleChange}
+            />
           </div>
 
           <div className="input-field">
@@ -57,7 +65,7 @@ class SignUp extends Component {
 
           <div className="input-field">
             <label htmlFor="phone number">Phone number</label>
-            <input type="text" id="phone number" onChange={this.handleChange} />
+            <input type="text" id="phoneNumber" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="country">Country</label>
