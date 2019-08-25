@@ -9,7 +9,7 @@ const DemoList = ({ demos }) => {
         demos.map(demo => {
           return (
             <Link to={"/demo/" + demo.id} key={demo.id}>
-              <DemoSummary demo={demo} />;
+              <DemoSummary demo={demo} />
             </Link>
           );
         })}

@@ -25,7 +25,8 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    demos: state.demo.demos // (props) property: state in rootReducer.property in projectReducer
+    demos: state.firestore.ordered.demos
+    //demos: state.demo.demos // (props) property: state in rootReducer.property in projectReducer
   };
 };
 

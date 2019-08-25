@@ -19,24 +19,20 @@ const store = createStore(
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
     reduxFirestore(fbConfig),
-    reactReduxFirebase(fbConfig)
+    reactReduxFirebase(fbConfig, { attachAuthIsReady: true })
   )
 );
 
-/*ReactDOM.render(
-  <ReactReduxFirebaseProvider store={store}>
-    <App />
-  </ReactReduxFirebaseProvider>,
-  document.getElementById("root")
-);*/
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById("root")
+  );
+});
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
-
+//trying to fix mygration problems API, but didn't work so fixed it with import from fbConfig
 /*import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
