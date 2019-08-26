@@ -13,6 +13,7 @@ import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 import "firebase/firestore";
 import "firebase/auth";
 import fbConfig from "./config/fbConfig";
+import firebase from "./config/fbConfig";
 
 const store = createStore(
   rootReducer,
@@ -21,7 +22,7 @@ const store = createStore(
     reduxFirestore(fbConfig),
     reactReduxFirebase(fbConfig, {
       useFirestoreForProfile: true,
-      useProfile: "users",
+      userProfile: "users",
       attachAuthIsReady: true
     })
   )

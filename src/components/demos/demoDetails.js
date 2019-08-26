@@ -23,7 +23,6 @@ const DemoDetails = props => {
             </p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-            <div>Posted by Jane Doe Producer</div>
             <div>{moment(demo.createdAt.toDate()).calendar()}</div>
             <i className="material-icons">cloud_download</i>
           </div>

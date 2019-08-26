@@ -42,20 +42,12 @@ class SignUp extends Component {
             <input type="text" id="password" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <label htmlFor="firsName">First Name</label>
-            <input
-              type="text"
-              id="producerFirstName"
-              onChange={this.handleChange}
-            />
+            <label htmlFor="firstName">First Name</label>
+            <input type="text" id="firstName" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              id="producerLastName"
-              onChange={this.handleChange}
-            />
+            <input type="text" id="lastName" onChange={this.handleChange} />
           </div>
 
           <div className="input-field">
@@ -77,9 +69,10 @@ class SignUp extends Component {
           </div>
           <div className="input-field">
             <button className="btn red lighten-1 z-depth-0">Submit</button>
-          </div>
-          <div className="red-text center">
-            {authError ? <p>{authError}</p> : null}
+
+            <div className="red-text center">
+              {authError ? <p>{authError}</p> : null}
+            </div>
           </div>
         </form>
       </div>
